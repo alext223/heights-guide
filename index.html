@@ -4,115 +4,33 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Heights Accommodation · Guest Portal</title>
-
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-
   <style>
-    :root {
-      --bg: #000;
-      --text: #f3f3f3;
-      --muted: #bdbdbd;
-      --gold: #d4af37;
-      --gold-2: #f4d35e;
-    }
-
+    :root { --bg:#000; --text:#f3f3f3; --muted:#bdbdbd; --gold:#d4af37; --gold-2:#f4d35e; }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body { height: 100%; }
     body {
-      font-family: 'Inter', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
+      font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text);
+      line-height: 1.6; display:flex; flex-direction:column; min-height:100vh;
     }
-
-    .page {
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-      width: 100%;
-    }
-
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 36px 22px 40px;
-      flex: 1;
-    }
-
-    /* Hero */
-    .hero {
-      text-align: center;
-      margin: 60px auto 40px;
-    }
-
-    .brand-title {
-      font-family: "Playfair Display", serif;
-      font-weight: 700;
-      letter-spacing: .3px;
-      font-size: clamp(28px, 5vw, 44px);
-      margin-bottom: 10px;
-    }
-
-    .sub {
-      color: var(--muted);
-      font-size: clamp(14px, 2.2vw, 17px);
-      margin: 0 auto 18px;
-      max-width: 740px;
-    }
-
+    .page { display:flex; flex-direction:column; min-height:100vh; width:100%; }
+    .container { max-width:1100px; margin:0 auto; padding:36px 22px 40px; flex:1; }
+    .hero { text-align:center; margin:60px auto 40px; }
+    .brand-title { font-family:"Playfair Display",serif; font-weight:700; letter-spacing:.3px; font-size:clamp(28px,5vw,44px); margin-bottom:10px; }
+    .sub { color:var(--muted); font-size:clamp(14px,2.2vw,17px); margin:0 auto 18px; max-width:740px; }
     .divider {
-      height: 2px;
-      width: 160px;
-      margin: 14px auto 0;
-      background: linear-gradient(90deg, transparent, var(--gold), transparent);
-      border-radius: 999px;
-      box-shadow: 0 0 14px rgba(212,175,55,.28);
+      height:2px; width:160px; margin:14px auto 0; background:linear-gradient(90deg,transparent,var(--gold),transparent);
+      border-radius:999px; box-shadow:0 0 14px rgba(212,175,55,.28);
     }
-
-    /* Footer */
-    footer {
-      text-align: center;
-      padding: 120px 0 6px;
-      margin-top: auto;
-    }
-
-    .footer-logo {
-      width: 88px;
-      height: auto;
-      display: block;
-      margin: 0 auto 6px;
-    }
-
-    .footer-brand {
-      font-weight: 800;
-      color: #fff;
-      letter-spacing: .3px;
-      margin-bottom: 8px;
-    }
-
-    .footer-divider {
-      width: 220px;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(212,175,55,.4), transparent);
-      margin: 0 auto 10px;
-    }
-
-    .footnote {
-      color: var(--muted);
-      font-size: 12px;
-      letter-spacing: .3px;
-      opacity: .85;
-      margin-bottom: 2px;
-    }
+    footer { text-align:center; padding:120px 0 6px; margin-top:auto; }
+    .footer-logo { width:88px; height:auto; display:block; margin:0 auto 6px; }
+    .footer-brand { font-weight:800; color:#fff; letter-spacing:.3px; margin-bottom:8px; }
+    .footer-divider { width:220px; height:1px; background:linear-gradient(90deg,transparent,rgba(212,175,55,.4),transparent); margin:0 auto 10px; }
+    .footnote { color:var(--muted); font-size:12px; letter-spacing:.3px; opacity:.85; margin-bottom:2px; }
   </style>
 </head>
-
 <body>
   <div class="page">
     <div class="container">
@@ -122,9 +40,13 @@
         <div class="divider"></div>
       </header>
     </div>
-
     <footer>
-      <img src="logo.png" alt="Heights Accommodation Logo" class="footer-logo">
+      <!-- LOGO ÎNCORPORAT (nu trebuie fișier separat) -->
+      <img
+        class="footer-logo"
+        alt="Heights Accommodation Logo"
+        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAP...FTkSuQmCC"
+      >
       <h4 class="footer-brand">Heights Accommodation</h4>
       <div class="footer-divider"></div>
       <p class="footnote">Made for Heights Accommodation guests · Enjoy your stay with us.</p>
