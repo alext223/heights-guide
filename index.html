@@ -8,206 +8,68 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --bg:#000000;
-    --text:#f3f3f3;
-    --muted:#bdbdbd;
-    --gold:#d4af37;
-    --gold-2:#f4d35e;
-  }
+  :root{ --bg:#000; --text:#f3f3f3; --muted:#bdbdbd; --gold:#d4af37; --gold-2:#f4d35e; }
   * { box-sizing: border-box; }
   html, body { height: 100%; }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--text);
-    font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-    line-height: 1.6;
-  }
-  .container { max-width: 1100px; margin: 0 auto; padding: 36px 22px 120px; }
-  .hero { text-align: center; margin: 10px auto 26px; }
-  .brand-title {
-    font-family: "Playfair Display", serif; font-weight: 700; letter-spacing:.3px;
-    font-size: clamp(28px,5vw,44px); margin:0 0 4px; color: var(--text);
-  }
-  .sub { color: var(--muted); font-size: clamp(14px,2.2vw,17px); margin:0 auto 18px; max-width:740px; }
-  .divider { height: 2px; width: 160px; margin:14px auto 0;
-    background: linear-gradient(90deg, transparent, var(--gold), transparent);
-    border-radius:999px; box-shadow:0 0 14px rgba(212,175,55,.28);
-  }
-  /* Sections */
-  .section { margin-top: 42px; }
-  .section h2 {
-    font-family: "Playfair Display", serif; font-size:26px; color: var(--gold);
-    margin:0 0 10px; text-align:center;
-  }
+  body { margin:0; background:var(--bg); color:var(--text); font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; line-height:1.6; display:flex; min-height:100vh; }
+  .page { display:flex; flex-direction:column; min-height:100vh; width:100%; }
+  .container { max-width:1100px; margin:0 auto; padding:36px 22px 40px; flex:1; }
+  .hero { text-align:center; margin:10px auto 26px; }
+  .brand-title { font-family:"Playfair Display",serif; font-weight:700; letter-spacing:.3px; font-size:clamp(28px,5vw,44px); margin:0 0 4px; color:var(--text); }
+  .sub { color:var(--muted); font-size:clamp(14px,2.2vw,17px); margin:0 auto 18px; max-width:740px; }
+  .divider { height:2px; width:160px; margin:14px auto 0; background:linear-gradient(90deg,transparent,var(--gold),transparent); border-radius:999px; box-shadow:0 0 14px rgba(212,175,55,.28); }
+  .section { margin-top:42px; }
+  .section h2 { font-family:"Playfair Display",serif; font-size:26px; color: var(--gold); margin:0 0 10px; text-align:center; }
   .section p.lead { text-align:center; color:var(--muted); max-width:760px; margin:0 auto 18px; }
-  /* Grids */
-  .grid { display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap:18px; }
-  @media (max-width: 960px) { .grid { grid-template-columns: 1fr 1fr; } }
-  @media (max-width: 640px) { .grid { grid-template-columns: 1fr; } }
-  .card {
-    background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
-    border: 1px solid rgba(255,255,255,.08);
-    border-radius: 18px; padding:18px 18px 20px; min-height:160px;
-    display:flex; flex-direction:column; justify-content:space-between;
-    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
-    box-shadow: 0 10px 26px rgba(0,0,0,.55);
-  }
-  .card:hover { transform: translateY(-4px); box-shadow: 0 16px 36px rgba(0,0,0,.7); border-color: rgba(212,175,55,.35); }
+  .grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; }
+  @media (max-width:960px) { .grid { grid-template-columns:1fr 1fr; } }
+  @media (max-width:640px) { .grid { grid-template-columns:1fr; } }
+  .card { background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.08); border-radius:18px; padding:18px 18px 20px; min-height:160px; display:flex; flex-direction:column; justify-content:space-between; transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease; box-shadow:0 10px 26px rgba(0,0,0,.55); }
+  .card:hover { transform:translateY(-4px); box-shadow:0 16px 36px rgba(0,0,0,.7); border-color:rgba(212,175,55,.35); }
   .card h3 { margin:6px 0 6px; font-size:18px; font-weight:700; letter-spacing:.2px; }
-  .card .meta { color: var(--muted); font-size:14px; margin:0 0 10px; }
-  .btn {
-    align-self:flex-start; display:inline-flex; align-items:center; gap:10px;
-    padding: 10px 14px; border-radius:999px; font-weight:700; text-decoration:none; color:#0b0b0b;
-    background: linear-gradient(180deg, var(--gold-2), var(--gold));
-    border: none; box-shadow: 0 6px 18px rgba(212,175,55,.25);
-    transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
-  }
-  .btn:hover { transform: translateY(-2px); filter: brightness(1.05); box-shadow:0 10px 22px rgba(212,175,55,.35); }
-  .transport-grid { display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap:18px; margin-top:22px; }
-  @media (max-width: 860px) { .transport-grid { grid-template-columns: 1fr; } }
-
-  /* Wi‑Fi section (no emoji color, minimalist gold SVG) */
-  .wifi-section { margin-top:36px; padding: 28px 18px 10px; background: transparent; }
+  .card .meta { color:var(--muted); font-size:14px; margin:0 0 10px; }
+  .btn { align-self:flex-start; display:inline-flex; align-items:center; gap:10px; padding:10px 14px; border-radius:999px; font-weight:700; text-decoration:none; color:#0b0b0b; background:linear-gradient(180deg,var(--gold-2),var(--gold)); border:none; box-shadow:0 6px 18px rgba(212,175,55,.25); transition:transform .2s ease, box-shadow .2s ease, filter .2s ease; }
+  .btn:hover { transform:translateY(-2px); filter:brightness(1.05); box-shadow:0 10px 22px rgba(212,175,55,.35); }
+  .transport-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; margin-top:22px; }
+  @media (max-width:860px) { .transport-grid { grid-template-columns:1fr; } }
+  .wifi-section { margin-top:36px; padding:28px 18px 10px; background:transparent; }
   .wifi-title { display:flex; align-items:center; justify-content:center; gap:8px; margin:0 0 12px; }
-  .wifi-title-text { font-family: "Playfair Display", serif; font-size:24px; color: var(--gold); margin:0; }
-  .wifi-intro { text-align:center; color: var(--muted); max-width:700px; margin:0 auto 20px; font-size:15px; }
-  .wifi-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap:18px; }
-  .wifi-card { background: rgba(255,255,255,.05); border: 1px solid rgba(212,175,55,.25);
-    border-radius:14px; padding:16px 18px; text-align:center; transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
-  .wifi-card:hover { transform: translateY(-4px); border-color: rgba(212,175,55,.5); box-shadow:0 6px 20px rgba(212,175,55,.15); }
-  .wifi-card .floor { color: var(--gold-2); font-weight:800; margin-bottom:6px; letter-spacing:.3px; }
-  .wifi-card .details { color: var(--text); font-size:14.5px; line-height:1.55; }
+  .wifi-title-text { font-family:"Playfair Display",serif; font-size:24px; color: var(--gold); margin:0; }
+  .wifi-intro { text-align:center; color:var(--muted); max-width:700px; margin:0 auto 20px; font-size:15px; }
+  .wifi-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:18px; }
+  .wifi-card { background:rgba(255,255,255,.05); border:1px solid rgba(212,175,55,.25); border-radius:14px; padding:16px 18px; text-align:center; transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
+  .wifi-card:hover { transform:translateY(-4px); border-color:rgba(212,175,55,.5); box-shadow:0 6px 20px rgba(212,175,55,.15); }
+  .wifi-card .floor { color:var(--gold-2); font-weight:800; margin-bottom:6px; letter-spacing:.3px; }
+  .wifi-card .details { color:var(--text); font-size:14.5px; line-height:1.55; }
   .copy-row { margin-top:10px; display:flex; justify-content:center; gap:10px; flex-wrap:wrap; }
-  .copy-btn { cursor:pointer; padding:8px 12px; border-radius:999px; border:none; background: linear-gradient(180deg, var(--gold-2), var(--gold)); color:#0b0b0b; font-weight:700; font-size:12.5px; box-shadow:0 6px 12px rgba(212,175,55,.2); }
+  .copy-btn { cursor:pointer; padding:8px 12px; border-radius:999px; border:none; background:linear-gradient(180deg,var(--gold-2),var(--gold)); color:#0b0b0b; font-weight:700; font-size:12.5px; box-shadow:0 6px 12px rgba(212,175,55,.2); }
   .copy-btn:hover { filter:brightness(1.05); }
-
-  /* Footer (centered, subtle gold divider) */
-  .footer { margin-top: 60px; padding: 40px 0 60px; text-align:center; }
-  .footer-divider { width: 200px; height:1px; background: linear-gradient(90deg, transparent, rgba(212,175,55,0.4), transparent); margin: 0 auto 18px; }
-  .footnote { color: var(--muted); font-size: 13px; letter-spacing: .3px; opacity: .85; margin: 0; }
-
-  /* Sticky logo (no border) */
-  .brand-sticky{
-    position: fixed; left: 14px; bottom: 14px;
-    display:flex; flex-direction:column; align-items:center; gap:8px;
-    padding:10px 12px; border-radius: 16px;
-    background: rgba(0,0,0,.35);
-    box-shadow: 0 8px 22px rgba(0,0,0,.45);
-    z-index: 20;
-  }
-  .brand-sticky img{ width: 46px; height:auto; display:block; }
-  .brand-sticky .name{ font-weight: 800; font-size: 12px; letter-spacing:.4px; text-align:center; color: var(--gold-2); line-height:1.2; }
+  .footer { margin-top:auto; padding: 120px 0 6px; text-align:center; }
+  .footer-logo { width:88px; height:auto; margin:0 auto 6px; display:block; }
+  .footer-brand { font-weight:800; color:#fff; letter-spacing:.3px; margin:0 0 8px; }
+  .footer-divider { width:220px; height:1px; background:linear-gradient(90deg,transparent,rgba(212,175,55,.4),transparent); margin:0 auto 10px; }
+  .footnote { color:var(--muted); font-size:12px; letter-spacing:.3px; opacity:.85; margin:0 0 2px; }
 </style>
 </head>
 <body>
-  <div class="container">
-    <header class="hero" aria-label="Welcome">
-      <h1 class="brand-title">Welcome to Heights Accommodation</h1>
-      <p class="sub">Everything you need for a seamless stay — curated links, local picks, and quick access around Bucharest.</p>
-      <div class="divider" aria-hidden="true"></div>
-    </header>
+  <div class="page">
+    <div class="container">
+      <header class="hero" aria-label="Welcome">
+        <h1 class="brand-title">Welcome to Heights Accommodation</h1>
+        <p class="sub">Everything you need for a seamless stay — curated links, local picks, and quick access around Bucharest.</p>
+        <div class="divider" aria-hidden="true"></div>
+      </header>
 
-    <section class="section" aria-label="Transport">
-      <h2>City Transport</h2>
-      <p class="lead">Plan your journey and move around with ease.</p>
-      <div class="transport-grid">
-        <article class="card"><div><h3>🚌 STB</h3><p class="meta">Surface transit: <strong>buses</strong>, <strong>trams</strong>, and <strong>trolleybuses</strong>.</p></div><a class="btn" href="https://stbsa.ro" target="_blank" rel="noopener">Open link</a></article>
-        <article class="card"><div><h3>📱 Moovit</h3><p class="meta">Journey planner: live routes, time estimates, and step‑by‑step directions.</p></div><a class="btn" href="https://moovitapp.com" target="_blank" rel="noopener">Open link</a></article>
-        <article class="card"><div><h3>🚇 Metrorex</h3><p class="meta">The Bucharest <strong>subway</strong> — fast and reliable across the city.</p></div><a class="btn" href="https://www.metrorex.ro" target="_blank" rel="noopener">Open link</a></article>
-      </div>
-    </section>
+      <!-- (Păstrează aici restul secțiunilor tale identic: Transport, Directions, Wi-Fi, Cafes, Restaurants etc.) -->
 
-    <section class="section" aria-label="Directions">
-      <h2>Directions</h2>
-      <p class="lead">Tap below to open navigation with our location.</p>
-      <div style="display:flex;justify-content:center;margin-top:10px;">
-        <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Heights+Accommodation+Bucharest" target="_blank" rel="noopener">Open in Google Maps</a>
-      </div>
-    </section>
-
-    <section class="wifi-section" aria-label="Wi‑Fi details">
-      <div class="wifi-title">
-        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='var(--gold-2)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' style='width:22px;height:22px;vertical-align:middle;margin-right:8px'>
-  <path d='M2.88 8.88a10 10 0 0 1 14.24 0'/>
-  <path d='M5.64 11.64a6 6 0 0 1 8.48 0'/>
-  <path d='M8.4 14.4a2 2 0 0 1 2.8 0'/>
-</svg>
-        <h3 class="wifi-title-text">Complimentary Wi‑Fi Access</h3>
-      </div>
-      <p class="wifi-intro">Stay seamlessly connected — high‑speed Wi‑Fi is available on every level. Please choose the network that matches your floor and use the password below.</p>
-      <div class="wifi-grid">
-        <div class="wifi-card">
-          <div class="floor">1<sup>st</sup> Floor</div>
-          <div class="details"><strong>Network:</strong> OldCenter1<br><strong>Password:</strong> heights01</div>
-          <div class="copy-row"><button class="copy-btn" data-copy="OldCenter1">Copy network</button><button class="copy-btn" data-copy="heights01">Copy password</button></div>
-        </div>
-        <div class="wifi-card">
-          <div class="floor">2<sup>nd</sup> Floor</div>
-          <div class="details"><strong>Network:</strong> OldCenter2<br><strong>Password:</strong> heights02</div>
-          <div class="copy-row"><button class="copy-btn" data-copy="OldCenter2">Copy network</button><button class="copy-btn" data-copy="heights02">Copy password</button></div>
-        </div>
-        <div class="wifi-card">
-          <div class="floor">3<sup>rd</sup> Floor</div>
-          <div class="details"><strong>Network:</strong> OldCenter3<br><strong>Password:</strong> heights03</div>
-          <div class="copy-row"><button class="copy-btn" data-copy="OldCenter3">Copy network</button><button class="copy-btn" data-copy="heights03">Copy password</button></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" aria-label="Cafés">
-      <h2>Cafés – Our Favorites</h2>
-      <div class="grid">
-        <article class="card"><div><h3>☕ Meron Cișmigiu</h3><p class="meta">📍 Bd. Regina Elisabeta 40</p></div><a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Meron+Ci%C8%99migiu+Bd.+Regina+Elisabeta+40">Open in Maps</a></article><article class="card"><div><h3>☕ Origo Coffee Shop</h3><p class="meta">📍 Str. Lipscani 9</p></div><a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Origo+Coffee+Shop+Str.+Lipscani+9">Open in Maps</a></article><article class="card"><div><h3>☕ Camera din Față</h3><p class="meta">📍 Str. D.I. Mendeleev 22</p></div><a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Camera+din+Fa%C8%9B%C4%83+Str.+D.I.+Mendeleev+22">Open in Maps</a></article><article class="card"><div><h3>☕ Saint Roastery</h3><p class="meta">📍 Str. Maltopol 26 bis</p></div><a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Saint+Roastery+Str.+Maltopol+26+bis">Open in Maps</a></article>
-      </div>
-    </section>
-
-    <section class="section" aria-label="Restaurants">
-      <h2>Restaurants – Top Picks</h2>
-      <div class="grid">
-        <article class="card"><div><h3>🍽️ Vatra <span style="margin-left:8px;opacity:.9;font-weight:700">$$</span></h3><p class="meta">📍 Str. Ion Brezoianu 19</p></div><a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Vatra+Str.+Ion+Brezoianu+19">Open in Maps</a></article><article class="card"><div><h3>🍽️ Caju by Joseph <span style="margin-left:8px;opacity:.9;font-weight:700">$$$</span></h3><p class="meta">📍 Str. Nicolae Golescu 16</p></div><a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Caju+by+Joseph+Str.+Nicolae+Golescu+16">Open in Maps</a></article><article class="card"><div><h3>🍽️ Stadio – Union (Downtown) <span style="margin-left:8px;opacity:.9;font-weight:700">$$</span></h3><p class="meta">📍 Str. Ion Câmpineanu 11</p></div><a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Stadio+%E2%80%93+Union+%28Downtown%29+Str.+Ion+C%C3%A2mpineanu+11">Open in Maps</a></article><article class="card"><div><h3>🍽️ Excalibur <span style="margin-left:8px;opacity:.9;font-weight:700">$$</span></h3><p class="meta">📍 Str. Academiei 39–41</p></div><a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Excalibur+Str.+Academiei+39%E2%80%9341">Open in Maps</a></article>
-      </div>
-    </section>
-
-    <section class="section" aria-label="Fast Food">
-      <h2>Fast Food – Quick Bites</h2>
-      <div class="grid">
-        <article class="card"><div><h3>🍔 LUCA <span style="margin-left:8px;opacity:.9;font-weight:700">$</span></h3><p class="meta">📍 Bd. Regina Elisabeta 16</p></div><a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=LUCA+Bd.+Regina+Elisabeta+16">Open in Maps</a></article><article class="card"><div><h3>🍔 Cartofisserie <span style="margin-left:8px;opacity:.9;font-weight:700">$</span></h3><p class="meta">📍 Bd. Ion C. Brătianu 34</p></div><a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Cartofisserie+Bd.+Ion+C.+Br%C4%83tianu+34">Open in Maps</a></article><article class="card"><div><h3>🍔 Springtime <span style="margin-left:8px;opacity:.9;font-weight:700">$</span></h3><p class="meta">📍 Splaiul Independenței, Bl.101</p></div><a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Springtime+Splaiul+Independen%C8%9Bei%2C+Bl.101">Open in Maps</a></article><article class="card"><div><h3>🍔 Dristor Kebap <span style="margin-left:8px;opacity:.9;font-weight:700">$</span></h3><p class="meta">📍 Str. Franceză 17</p></div><a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Dristor+Kebap+Str.+Francez%C4%83+17">Open in Maps</a></article>
-      </div>
-    </section>
-
-    <section class="section" aria-label="Museums & Attractions">
-      <h2>Museums & Attractions</h2>
-      <div class="grid">
-        <article class="card"><div><h3>🏛️ "Grigore Antipa" National Museum of Natural History</h3><p class="meta">📍 Șos. Pavel D. Kiseleff 1</p></div><a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%22Grigore+Antipa%22+National+Museum+of+Natural+History+%C8%98os.+Pavel+D.+Kiseleff+1">Open in Maps</a></article><article class="card"><div><h3>🏛️ National Geology Museum</h3><p class="meta">📍 Șos. Pavel D. Kiseleff 2</p></div><a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=National+Geology+Museum+%C8%98os.+Pavel+D.+Kiseleff+2">Open in Maps</a></article><article class="card"><div><h3>🏛️ "Dimitrie Gusti" National Village Museum</h3><p class="meta">📍 Șos. Kiseleff 28–30</p></div><a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%22Dimitrie+Gusti%22+National+Village+Museum+%C8%98os.+Kiseleff+28%E2%80%9330">Open in Maps</a></article><article class="card"><div><h3>🏛️ Botanical Garden – “D. Brândză”</h3><p class="meta">📍 Șos. Cotroceni 32</p></div><a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Botanical+Garden+%E2%80%93+%E2%80%9CD.+Br%C3%A2ndz%C4%83%E2%80%9D+%C8%98os.+Cotroceni+32">Open in Maps</a></article><article class="card"><div><h3>🏛️ Therme Bucharest</h3><p class="meta">📍 Calea București 1K, Balotești</p></div><a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Therme+Bucharest+Calea+Bucure%C8%99ti+1K%2C+Balote%C8%99ti">Open in Maps</a></article>
-      </div>
-    </section>
+    </div>
 
     <footer class="footer">
+      <img src="data:image/png;base64,{{LOGO_B64}}" alt="Heights Accommodation logo" class="footer-logo" />
+      <h4 class="footer-brand">Heights Accommodation</h4>
       <div class="footer-divider"></div>
       <p class="footnote">Made for Heights Accommodation guests · Enjoy your stay in Bucharest.</p>
     </footer>
   </div>
-
-  <!-- Sticky logo widget (no border) -->
-  <div class="brand-sticky" aria-label="Heights Accommodation">
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAP4AAADYCAYAAADLY156AAAACXBIWXMAABYlAAAWJQFJUiTwAAAGLWlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgOS4xLWMwMDMgNzkuOTY5MGE4N2ZjLCAyMDI1LzAzLzA2LTIwOjUwOjE2ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczpleGlmPSJodHRwOi8vbnMuYWRvYmUuY29tL2V4aWYvMS4wLyIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczpkYz0iaHR0cDovL3B1cmwub3JnL2RjL2VsZW1lbnRzLzEuMS8iIHhtbG5zOnBob3Rvc2hvcD0iaHR0cDovL25zLmFkb2JlLmNvbS9waG90b3Nob3AvMS4wLyIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0RXZ0PSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VFdmVudCMiIGV4aWY6UGl4ZWxYRGltZW5zaW9uPSIyNTQiIGV4aWY6UGl4ZWxZRGltZW5zaW9uPSIyMTYiIGV4aWY6VXNlckNvbW1lbnQ9IlNjcmVlbnNob3QiIHhtcDpDcmVhdGVEYXRlPSIyMDI1LTA4LTEyVDE1OjEwOjAxKzAzOjAwIiB4bXA6TW9kaWZ5RGF0ZT0iMjAyNS0wOC0xMlQxNTozMDowNyswMzowMCIgeG1wOk1ldGFkYXRhRGF0ZT0iMjAyNS0wOC0xMlQxNTozMDowNyswMzowMCIgZGM6Zm9ybWF0PSJpbWFnZS9wbmciIHBob3Rvc2hvcDpDb2xvck1vZGU9IjMiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OTg3ODBlZjgtZGEzYi00YzRhLTk5NzUtYzViZWZlOTdkZTIyIiB4bXBNTTpEb2N1bWVudElEPSJhZG9iZTpkb2NpZDpwaG90b3Nob3A6ODc1Yjg4OTctMTljZi1hMTQyLWIwY2UtNjQ1YTE5OGZjMzMwIiB4bXBNTTpPcmlnaW5hbERvY3VtZW50SUQ9InhtcC5kaWQ6NmU5NzEzMmItOTM2Yy00MDhmLWI5YjYtNGNlM2Y4M2IzNjUyIj4gPHhtcE1NOkhpc3Rvcnk+IDxyZGY6U2VxPiA8cmRmOmxpIHN0RXZ0OmFjdGlvbj0ic2F2ZWQiIHN0RXZ0Omluc3RhbmNlSUQ9InhtcC5paWQ6NmU5NzEzMmItOTM2Yy00MDhmLWI5YjYtNGNlM2Y4M2IzNjUyIiBzdEV2dDp3aGVuPSIyMDI1LTA4LTEyVDE1OjI5OjU0KzAzOjAwIiBzdEV2dDpzb2Z0d2FyZUFnZW50PSJBZG9iZSBQaG90b3Nob3AgMjYuOSAoTWFjaW50b3NoKSIgc3RFdnQ6Y2hhbmdlZD0iLyIvPiA8cmRmOmxpIHN0RXZ0OmFjdGlvbj0ic2F2ZWQiIHN0RXZ0Omluc3RhbmNlSUQ9InhtcC5paWQ6OTg3ODBlZjgtZGEzYi00YzRhLTk5NzUtYzViZWZlOTdkZTIyIiBzdEV2dDp3aGVuPSIyMDI1LTA4LTEyVDE1OjMwOjA3KzAzOjAwIiBzdEV2dDpzb2Z0d2FyZUFnZW50PSJBZG9iZSBQaG90b3Nob3AgMjYuOSAoTWFjaW50b3NoKSIgc3RFdnQ6Y2hhbmdlZD0iLyIvPiA8L3JkZjpTZXE+IDwveG1wTU06SGlzdG9yeT4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4SCQ2QAAAry0lEQVR4nO19269lx53W99Xa55w+ffpiu9322I4TZ0gQSRwSpJEyYYiEIA8gEQRoECBGCmIQQvwRg0A8wwMa0EiAxMNo5i3ziEZC3DIozCChBCWeZJzJMEmI7W7b7e4+p89l7/rxUL+qtfZedWvbJ733WvVJ7W7vVbvW2rXqq/rdiyKChoaGecE86QdoaGj46aMRv6FhhmjEb2iYIRrxGxpmiEb8hoYZohG/oWGGaMRvaJghGvEbGmaIRvyGhhmiEb+hYYZoxG9omCEa8RsaZohG/IaGGaIRv6FhhmjEb2iYIRrxGxpmiEb8hoYZohG/oWGGaMRvaJghGvEbGmaIRvyGhhmiEb+hYYZoxG9omCEa8RsaZohG/IaGGaIRv6FhhmjEb2iYIRrxGxpmiEb8hoYZohG/oWGGaMRvaJghGvEbGmaIRvyGhhmiEb+hYYZoxG9omCEa8RsaZohG/IaGGaIRv6FhhmjEb2iYIRrxGxpmiEb8hoYZohG/oWGGWDzpB7hsnDy4i/fu/GBvtTy7DeAaAAIg6P4BQAAIyAfXnnrxzvVnPro0poO/dHpyz9x76/svrS5Or4A0IkKSEBEQhPguCFBgTbc4u/b0Sz86uvniqu8HOD1+17z7xndftnZ56G9K/RsAQLrnEQFJAXh249YrP7z29IurSx6i9w8RnJ68i3t3f7C3PH/0ERB7kPhmQhKArIxZnN949pUfHV1/fgUyXD87uWfefev1wTgPXw+HwwRAxJjF/Ru3Xrlz9cZzK9Lo41gcv/dGd/+dP74tdnnDP4voaBPQt08AOHvq2Y//8dUbL6w4eI65YPLEf/v/vbb/ra//279z8vDu3yfwcfepmz36LxEIjNn71ic+95V/8akv/O3/Zg6OLACIFbzz5h+8/M3/8mu/fnz/jecA7gOyMbFDXwLIav/KtW988s/89X/6ic9/5Xtm/yi0unfn+7d+97f/5T+5OH/45f57IoPvs38krhZ7B6ef+eJX/8Ynn/6rr13W2HxQWLF4+43v7v+fr//7v3V87yf/XPrfkMJy7+Daw8/+wt/7m698+svfNd0eAEBEcO/OH770v//zv/kNHec9pKVRgYjdP7zxe5/54i/9s1c+/eXvdIsDgQjs6oI/+cHvfvq1//kbv3J+9vDntI8Rq0ljabrl5770y1/5+Kt/+TV2k6fBCJP/xavl6cdOHrz1D04e3PlziTkpJC7Y7V2cnz/4lIh8HYDVS7AX5/snD+8+c/zemy8D2EduQgKri/OTmxdnD78mVl7v+wFWy7OnTh68+RfPTx++gPK4rxb7h/cuzo+PetlgGyFYXpw+f/Lg7lcf3n/zI4CYLO+Ji/2Dk7eX5ydXJTR0a+bq4uzg5MGdZx6+9+bLJPYhKpmN+xBA7HJ5era8OP0CgG+HpxG5cn52/GePH7z1ufPTBy/rjj8mvqGQi4cXZ8dXCwvVZDF54gOyB+AFJ81HCUQA+wReJHh71IQwBPZI2QeYs4kQwIJAB/AVAAcAHg2uHxG4RkpXQeQOwCG5/e+H4CGJ5+klocxPE2ABYg+k4WZDgiT3SNknaDL9UNwY3ya4B7ADENQhkocEbhPoUn04aV+uYBbzP44Z/HB2BA4r9Lg9Aa6K29WXg+8DbpfPTcZBcwrIAxJ7WCf+LZBdavUZd4Od2IzEzaErNWNDAQka9+v8F8LfBGBYMc4Ube1MLAsMiB+6zPWhzN9aQeqngOkTnwAMkKObAKChJdFhc0wIwrh9v4738Ma5ddoS+zCQajtSafJuCah2O2MoIpJ9YmGgfHxJU+oXf3ZYN+jJv36p8L6dqL8Tw3tpmLw7zxtxsxsAB3+i191Eyc6mQT+5Z0F9Pzuw36PfPYHy73L/YXSg6VQxlvrRBZGgZMeIzI4fd2RhvSzMYscnKTSUJP8HhJWIAEgCxk0kFib3cCdZa0hQjKHU9mOcKLr9U5Mqn/sdvzg+tJGP1yQHFMZHIGptGUgYg0E3+kypPvoFeoZ+PMX0iY9+pynt+jGa+Y9ZK+mTAhPdbfh4/ThOVbR98nC/qMZ64Tb1SDtBeAc13UQXV/eJUImd7KZXxzZds/PB9IlPutkW5OwIRPrFfySC+kmCGlFWd/yIrquTuqYft6URJF/MN3zy8Bsnqft2HkLGJa+gkuXek8I4D42QtLGBpjOwpv2g7nlJcq/0wFPF9ImvMTLMbCXCoHYyZniiUYNQYUa68BtiZNiDn9jGVvXTN7ida7cN8OxyhC4Y97zyEjWkwC/S5fER5xuISmi6wJqseAdvA3he/2837CkfIiZP/GDlzQh13l7ENYOQDBuwRkT3emqy5WP0AwPCuQS3Gn58a+wRoW2UZ0Qvoue56MmNkR1ldD3xfYqqHE/DxUwsU22niskT34uhWau8YGwsCt/vxdAaET2oFZsWZzU4scZoJxBT2va2CCQ0XL5ifMKI9h/6vwOTS32p6JBcX8nsOPsFmsBBbVzF1DB54qsYGt50qlFw2W2Qn1AxPys7hsZMiqBQz0JNGBBV+tiBKenF/Bo/vmuaUrmcfM6uyvYZF/XZ2wmMScsMpHpXnIQX8TJMH5MnPjAUMdMNaMKuJaMpw9p9IQSGxAX+x+nHhLZbrYM6IUcMUPHblJBRFZ/q09N2pX6S67gPuMp4B9i3AZx8sb0ZkJeEyRPfkZ4wOg1SDDLxaDt433KVr0p9SdGm2o/3U0s2mYXCnFV6i6AqkPtdErFqrjWG0NClzkQGwJAwJv+e9J7ufgnjngkSSGJt0PcwW18eZkD8kY4emVEpY1H/fZepU5K9GUR0YyN3orqg1ryH6X62n/QeRo1yJeNFzvA5MBKibCkU31O0R+8STI2xN/tI8mmmj+kTH7pjdwwxIjGo/j3+HG5Csiu7mVw/ayJ6/zlp/bWs2jF8nh2Yll6i6t2Uea3EjFa0XpMhAdP5FJxMP+J27Nj4aJQmBjVQUm2EhhZNx58mdKNn1jgngOkJu9FByCcrx5SJI2ziQegnZXH5kLDr7wR0MdOnzY8zUq6/fgHpP0j2I2TyfcHHXeSft1+ldmSUP1xMn/jGEdfk9pBg1Y+QdrCjoTRJ2Iu9kUvOsFWjWKoRrMY3/sThxg6GFCkE8Ki1PVkWgTp+QEluyIjx6J04meegenmy02LKmDzxfQGO7D7bk3WkM3p/MfsCeznk3Mt+vtaQOaMNbxeCFZ4o5MMhSD1YI5uK+b0FpWzY1x09usCqcS/3vtQA67/brPrThOqfXcHw1HEQQdLrnQCczljjxwdgTMaq763WFV2ZSpvCEwcJY0BTIxEhsx2Tzo5SeE+DfsZeGMCL+iy9L9Pp4jBTTJ74Pgy0FDGn6uXgem+hM14NKE8U8Zb70XMAfgGqIYhPMdt6MdRJQ5UBTgJxKkxkfAgaVRnKRn24QKh4KxcklFmIVMxnVLWbCaZPfM2YMybtY/aTN0o075o3broWdU+vw8bmdr2brqinbg38Dqu/q+DHd6RMyuDqFanox4Rkno1IS113DTPvO2XPmREmT/zgFC+wyPt2I1cGpbuKrKVJhdp6F1JlYE7SO7Bl6Hd8zZrLthb1jsQvDtOna/px7ri1cXIWO4O4AcA3Wp8SzZ03SRAwHcguXcVRBKp7j4O5ONDNK7Zg0XKaUaOT0z3VopztRZz1u6685xNHjU4NaIa08/eP+yBhOkrNOIt4f39knA1AY6TLqFS+UoeuL824N0XojgRjmIy8MxAMduNRB0aNThXevMykdZPadOnn6PsJpcK2HsGKbspOD6PxEqmfr+HRxYqkRoJlfhNCUIxa/dPuW4qGV++EVHUZmD7x+50kW5HFEDRGRjldLlyX6Cqt1n08/vqk8jH/tdbvpHdgi6BuzoFVv7BWkeKs6QmNypBdV+U1dUlMsYInSnqTkZa8H3/bx/cyMXniAwOdLiXqQ3cQcKylUsRH7pU1Tyf2qplrvTHLzxH60bY7MzONGjULvA/lCvyKERBiJdSkUmHUTwQ4UV+lydlSXDRmWYSbMKZPfMJnY+WauIkQMaj5a5GzX+K3MnH/MBF2xrpHrj564wnD+fGdjSSbcgioOV5NcMNPg0sw+542+xmOj/h7q2Rls2fx7JDX5JIweeJ7vdF06TRNcM1XP+qA+v0K5dwbp+JVdr0fv6KfpM1hy+B1/FwabGgLl04b9bTpe6oZH6bSct12L6bL9xPGljwr/b6pYvLEV/eOI2+ulYkfluPj0E3tSTo+A2/8GDAdYVZ1/eyCju+guRAdi1HvgvTvcpJV/Thv9uPldrU5oMtJDrrdG/IuZlhvD5gD8b3Sl5lPProvaW02/clOhbmtgSVj5q/FkFc8dU013m2AO0aAcUvbBgxAZy9JbcT5wJu126Yj73xERt64ZyigvIWWpDNNsNfxM8YeL/7Fdnyd2Cafz6/IhZJ6f3dlyC5q0l6ePOjUlxpRH4Q/SSh2rbqMOYD+ZKTNs/MMyrkDugAT3C/cZ7KYPvERjnjKTieTTr1lEGUrYNJZY/R+/MfoZ+sR4pBrRHQXwKM7vk/Sc//WBZrVSUy+XUTTL44ztRSbwdPhAWaGyRPf69bdglmjs0/zHGmq3jhYm53XhUo+I3ee6Shm9Rj97ED2mHorYDqUztMAIDQd4zUJNMiqemH0EZIbzb2hMevF8QZb4hYcBy6qbjohTJ743k2U84p7G0DsurrznAhfEVniyBpzC6p4WdOPt0nsgqivMfaG/mflVtf0S3AWf3Wr1ub1J16Yd7+mVvrePtBE/cnC7UiUrJUXSNbO1xrseStx39qaLmFIVMmhq7B+AxTTGclFn20N6Hd8lZgLu75TYWRc80rtLHXj7Kz2MeOeU6mMdDkJhMbqYj+7nd5j+sQn0HWk7ZgxzUl6NyJgFk4ErYj4cPplrGgnQdMRYuv68emp2w73u8CuIpdBRNCNxtHVuiXAzhCrinEWEaSToShO7TA5I6o/B+AhmjtvouC6cS4eWeMNVGOd0RvlSjYC39x0caVCFyBI5HzXeD/B2LjVoLNd0JhyzT0DousS8U0ETKdjVLinAQs7PiHZWH2CNIJdOqfsQ8b0iQ+sFcvM6/lxojk/f5WxTUwu+YOP486rCOp/0iCwXqikwq5v4pKXC75hZfyCgJ1312/0o4u82LI7zwBHaMa9aYIcpsMm2riGiBnTdEdTaaDMQ3odfyQ5uFBSsZXuqp04O88VMjWd80KUDqigK72VjGykN+4VoyWS/v5Qdit3Bl9wB7AZ9yaLYQhnuhST+ytmTCOJztTpsIS67OJiJjtDQYW7ynkSdiGLhDAU6QxhXS5EAcLOUEzkDBtVhcR2Wd1c7woYE0niU2GiMzAouPPcs5eed7qYPPHhdesC4ZxLahzM4Xf8rmJCAsMJuZmPT+k6U1KD+/bG+7u3W88nsewWfGSXxopI5vwaAOSq67hihPnOnedsKTVej85LYaNbqGegsOOrRXG21J888TUirBDJBZBGEsY0KX5/AKPJPjFRFsYZ7aqe2xB1YetPEgISxzT4MQ0+SbCkK4sxOCa9Jd2PhYR3VBPgJCLUg1A3x0fcUdsmm5Xr3s5uZD9eFqZPfGg5J4Ok0kznUopXwKWP3Et/fwh1+yWtzbY/DDr/3DtQc4/osNh/4Y2Dq3/y10x3eArgBUD2AYpADEALiDutRigCXHR7z9xdHLzwHiPhez7OvjTOBi42Y23HdllCS1UDKBnJymf4bPfoXi6mT3zn14WIyUSX6DGtbipsxpXAGIgJcQC5TYLjCTnop+tAwuj1fD+7YdU32L/6s8tbH/mHvyX20X8CsIcwmJu/kQBhyStn3d6N+9hIkqYusFIcZ9etBkptYkUvVRX6mHuJ7RkQ3+/4BeMcKZtuXXUxDVSFsoEv6X8nBn0ApX76mnDCbdbzyQ6L/WcsgPc+WD+E6QzEeltKxTiPmO/IXH5Xzge5E5GRl4TJEx/kIKAj9Z41ci8W0FG7cChMiLhbL9WtO4xOtor5FndTTxk0BoX31MMk6id4laoilihTgWH6mDzxdccXSQSOaKtkAI+36ruIuxodPx5jT4LdgrCrun6csVEbimSefQrQNdGL+pW2FBMhrw8hzvVBbZisDTADzID4FLMgYIwgafFxxp7YhCGhLqYa4tHn9W904yrFuzh1L8qWdHwY+jLdU+Y8AMAIzOIl02GvF9Fz42MkWcLLOLcpMzo+XYV/2Xbj6WVi+sQ3QNcZIUoBMWHHl8FHGsBD4aLmYHtws/rr4DnYdYQx/mp2zhFYHVycfOMXH9lHN8C9c8ha5Qp1ReA9AHcBvA3gBG55KlUHA7SzNax/8DKA5wE8A+AdEG8BeBPA+aCfI0BuAbgl4IEaIhYAOgDHBO5rw2sAbgyq8wjcyTXHcG2OAflTy/Pv/bzhvRdNGOf8+Kj7dfTTvGRlbE5TcouLc5fOc9efPvGpxTaLi3s6O4+GoFSXhEpa430/qNPdKavXv3B6/Ic/pwtWnVXwSUE2k3RKB2zQglApjCvIakEjlaU2IclkSg3RFuTGWaWKmRlRhpg88QFHOBRfczjhZV1nhB779Fj+9/HREs7olPcvR/uDdDtRGWpMxNIP7QaturqveEiIyd+4YDRgq5A2wP4MlZli8sQP6bCmFHLrUks3aU9SugVhaIpJKACSZbpB2m5h5HGJ3xCDTwlcX2AJLDTsl7n0Z1d+xzQ//pSxbpXPtpRY8Qsf8oviEdDa3nkPYifyuJz1RvwPB/E06S64X7NWfTUGkCeX+5Dbi+kTX09PLbnDBC4pZlwSSqPxaqXCVJVd4yr5oK4QR0MRiQXW1zwoGHJdQ9zFDI/IBmZAfBDojAn1nZIIJ1WOvo7OLxxVnI273wiwc+fz1T55QxZ+KNfJb+hTnws6vjOy3sVOGFA+fEye+CQAAwFoEYxI0YZxKTyI+vo/eVhEXUQUgFZth/nnaKiAACmrPWvG2S3OApxe3jNuNyZPfBHAWmAzhHYEihccxy5uAcRGL23CuCrarsO1PlD5HA1VUBXfbn7u35Xkx9ktDV32OMVJY/LEB6D11QtueEnQWgARCCIVoeOtgWiEoOuHLD1HQwVcjm+c3OJdJ5n3JdQF+AX4iKaZYRbEt+JCRfIBJeIcdpufAiJWILYyZjccpDPqybidSHtt+AAQL6GtR1rqJREpuE8IuALcz8KpA7MrsT154jvRT6gRYqlWui5EL8FaIWxd4B4o0eJ+IoAVoUbuNaxDF2VP1pIHBgCFnQDD43IEEGvdn/zaKhSnkh19wOfeWcyA+EIRgdjCjq8CXyQPjrp4VN2OJqgF652Ya2+Dz3/fytsvp74L51oa6a3vExtVMKrbDvF+vvd+9BgDOT+CPLqRf5z+tiRkc1d3K7NQrBQqf1LI+HuaCyZPfMAZ1UqiOilRcrtFQ7xhrnQrmsTiwsVHv7V39Mv/yMrDWwQtZKSfvqd/zvxX/COUbpp6lsrvl9qt/Z6ahxl22H85Luk4fsqBXHznl5Znv/2PxZ7crLgFaNKPYgVS8b6T72oOmAXxB4p18kWndUJnSCp8PTS2Mt6JAIA8OFkc/Infq3reWcEJ7stH9teXp7/zi8DxzRpBw42xbC5KMjDE5l6YbzdbTJ74IhDr2JhpBIDOiLc2GSTYCGBXEIxzb0b90IjzAjRUgtBKIxfWYikWKeGgh0B0nEfsFhFji6K+8+LPOX568sQP24DNW9Uo3koUtezDStxot9YHQLH5NaYhDhFY95q8KSY9iM4mH5esAPe5+vLT33dZ1rY2R3pqmD7x1ThnJe9AFySIHbwCZVlfgnV6tdiwUs94Kdj86ekhlCq3q45zzFfvJTS3KGS/T8x7gZ488QUCK2Bxx2dc9HO7PWir/fiPrp0d/6+/YpcXBzRX7+mn4045XBTSfbuZzQdwFXB+OLpf32zzs42OROBqWu8LcBvAIYFHcPHq56D3JnD4HcC5vG4KcKgX9wBcB3BVW53AVdJZDr5rABwIcAjBngAnJO4Q/JEx1368d/WzP+72nl+tc1aCmJ4ai+FvHBB3Xc/3ql2pH3oX7zwxfeKLt7iVjHtDj/DmNW8jKM8TEbuQ8x98fnn+g88DawEmM95fAt6iuf61q+bv/qpZPPv75HD6CUUs68ZZgBCbsdFYxDh3XkFCk+TrngUmT3wvqpd3kphG6AhvLWrdef6WBuBmuudsd5cBnjNY/SWR5b9z/zvgpgDWglXj7IyojDFXd/xi4QPCt5ln7sT0iQ/ddss7SdwWpHu22EhoT/6uLQNvE4KVpTwDGSfH6Dsq79RAcP4jukK4Pgr9JL47H0ye+G5CaRhnKrgmbDopHV9gJRiUGt4/aGwiZqI3yjEVPT1sbazu+Bv09sY9m4m0dGUXwiIzS0ye+LCArFQnTNm9dAOQRLCsWAhWkqjr2lANnzwT26cByApil1Iog679wLvzIkE8VpgLfBYIg59mpjv/5InvNur8jg8AYGwHoO4gbcf/sGBS3nVlctj18xCTalO143Pmpr0ZEB9qxCkbe9ILg6TE04bHBa3NeU9QV41UQOmrKg0vGBFnyM31I+IK9M75nU6f+IOgDuQrcTBpLpKyO7ChCgPFfOMCXHRk5ThLYjGX/nqFcW/Gm/7kiS8ArBWU3Hmkd/dvfFsgYlH8fkMVCBdJGTHuORuLXVXVMXcB/kl3nnPpZTtwhRFmS/3JE79PtMnsAG4ajYxO3g1oS99vqIWk6ObHWrPmyjEXKflM4zZK73vOpAdmQHx156n1NxXNqn+l6uyqWFm0Noc7zhE1UY2+Vl4I9x1c9CpZeZx9u9GH7h8+oi9NfK3B2HT8icNF3+ViNuiKMUUaCEBfjMNNkxyxffh9d2HMlWPCWF8XZvAsZqN18pH0AYheFvERB9GotWx3H+y4qMF36aNnBGKN2PMrIueHdTExFE14uo5Q88jfQcKOr2667NOIiRPXJ2Q5UT/VhwEZMw7OB9MnvkbdpXz0oZHzDI8ni0/pVdGhdDNycXFw9KnfObrx87/F7vo7HKXmSajSr8w267T2zYWjbctlphg6LyN9mzxik9snBg3/dveMZxIOP2MIqhV7sX/68NtfOrn/jb8mK182KwfnPxfBNUSKXIp1yVTlflT1Sgj7Li03W1hV3bep3zt9TJ744o1Ghcxrl+7l/rn2fQBWyt/3zbvF/snhtVf/67Vn/8J/6BZH9z7Is28+4sb/PsEJq7KPvTgw5vDB6YNvf2lpT65LTXaNo/5DbNQWFDCUOSuq+BAfq79Gfb82iy+4mXgeslXgmTzxNTBE3XHZ3SSen61Tq6oyjNMZLNBdXILyuEXTdKgVmWXga0UNO/cq8ACbRUX1gh3IQtlubCIOyHlhsvn4Tn2ar34PzID4YRfIq/jIGXtCWm5prniXoEDg9fvR0xQedu2ZtnluEqBZgRQrtKlQ3M2v6E57HL1e6z1hMAkkunEVeFIQDgtxzHMBmAXx1Y+fbUS3iY2Ne07MZ9WOJiBXSoA1Gvi5XFw4dg6+fHlVnIMFwWQSJMN7KvVkheQ4Tt+78uxKaAs199hb/meJyRM/xGhJwRJu0qY7LeZRQUuKdIOk0f5z2NWjo7OT//sZu3zwTMzgJo4RdPXexbC7cnxw9aOvdXs33i7f9wnCG9KcNlXe9ROSl8+JqJEc6P3wEhvHoN0ljbF0tG+ltyYO9nXYEsYeBFUgrTdWhZJKX+1no+XZ8R999iev/6t/fX72k58laLXOq1r4+21Q9ztZLG7evf2xr/7Kzef+/G8+3s/96cItciEHvibUNnMRcAtIoXCCQGiFgkiUn9Zayx+AInqGYdvxJ4tQYdfvDZFXbQkYG48FUysxxAqLsaTDqbRBgtXy4VPnZ3detsvToxor4YW13fL87RfSLrYtQNhe4f3z+eaEP8k26mN3r0pYrmKuVXQFiI2NWGTPIxIGJwLyLaeLyRMfUB1/lZ+VtguRe5sNpXczFUCAmhk26sTpsMa6vX5RiANaEdLJ+LSdrYPAZcPZzTMJom2BZEasX2BXqjLkQJUcYioDQgBP7vs+O8/AFQbdLJM2eUyf+Gr9tZnwTBKATUSRq0egys0kcCfupirMOIKUySwwxkXnbb+5T3qduqg0E6nkvGCEjS2asZ6MeMlhvRsvNWTfN3z6r/R215lh63eUDxHJ+TSwASSuZ52BG01TDYNxsbqfHdFAveG0/LRDS0bSFVfRj+19cWM5P9wn/b77VmepNlPH5Hd8dcep2ymTnMd4rTcBIJbqripvDaY3BI77Eb/jF21gxpjdSBtV0Tok4JRAu1nIaLAWhPTpcuSeSUoObre3Gc2dgIjz4tzBRtjwXDB54gPBQCdI6I5WAJqg4499wy7st2h18uRGbGeX/jkq+hGxcNNz26G/yVofF5Np6vV4IFKxWOrHxxkTEy4YABbZ0loCEC7/4m3swOJ6GZg88b07N7cDuIYJ944nbEZiWGtuk7arUMKrqp9E3fhthK+GU35ePczS79bDrEU8zjgnC/kEe0x2x+/9N2aO+j0wA+IjTMqiYS5e0QW9DSAlMazfDvE9pLcj1PaTNhdsF8THx1f8rrTtwq8JdeMjklCpoCaZbLyAlzcET2EzPXgmmD7xAfXjp63FbpalYvWFve5ZQgjWz1n1a/YYF466A4UifB6EG988f5y3M9LOq/mVob+EnmUYzcd37zrXD0kfM/U0BAZs7rzJoZ+Y6WVd6I1OEaNc0PFr/D6iE3u8a/lu8nUBhu0rwl+3AUo0L8LnHlkIGJ9HP+rGLbBiy1uwQND5hTxijXUBV5kOKIARQuQg02rSmDzx4UQ/J/6liCsCGiRnW8juK8BF4cYntvbj3Uj5k3u9cXoHRFC1XQQRPvvAIT16oxnD5XBoZmF8krdS1UyQD/0VumfeQwvgmSbChCzojmHyRi/C0bV8bnsfD7C5yriLzMeQb96u2PTJQz0YoolQpdZRI2AQ9eFsLYVxtuF+UWNslY5v1+48P0ye+ID3M6ffstfxEWni03K1TFNxpvSnvY4nbzh1t+ym1m1/NzDMXizu1CmVSwnrs3ILkkPyYI7gxcl0QHGBALviNbkMTJ/4Iixlawng0nLjFmeW4gDWb5c4vhnBFF1V9lJ2QtAf/K6K8bHwIc3jpU+8G6PCuCdeckhdtJAc84X0YsPWG08vC5MnvpC+Zl76JZMhuWbziog8L6XvD9r7U1wjogPVu1DDZxoWKs1uD/rY+HKsvpeeELG4qHGvKhkqqTL5mAKby+unkGYnxvbSMHnie1NSyejkpPgRuTsA1yoTR/ztorpub2qo7EfcWlHZ/MmhH9+y20MG/x00lcGfQYNSP6nXGrcjDNDHZrOQwDtdzID44sXIbCEOQCiuoktEDEVw55Ws8Rkd1uv4ZYI4QaVKtXjSCAZNmycb4MbH5tyqOj4Za7z2I24c1xaSzedJ90MCmpZbY3GZJKZPfAC2UK9d3H9iO7UzrodD9fIzW7y4mpRCqyzfgOtnN0J2dUHri2SmH9q6tOX46im9mF4y73kD3nB8gsQgKJ5uHAQGEfMYQtikMHni9wE4mR1g2HYz8Ea8Zb9up/YuqYQQysfZ8XfF+OS9ZxVF7AZhtuttRY2otsJI6CSryAIi/fsu1NWHO1ADBk6dm50ff/uzvz4ggv5Y2AES1XeAkBBSecJLaqsKO9Rj9bP1u5Efm7pFSlOfo24PX2iz0nOS2qorkoUGgVSzxeR3fADquimI2Um/Ll2SZ6WYLunSW9VuLwD+LL9dgPhw2yJ8yawNYwnDRU/KUriyABbR5AABrdoccs/hVD/Sbm09w0vG9IkvgBVfiCPexB9S5y6vT4RQ2KHmwAgt6SQQMiKI6lFeVTo+mT8UYlsQjGk1oj4RDbzR7dfXNiwykXCl1LRmXjRRJ5+kA65mmZPXY/LE90HbpXx8sao3Rg5pwOMk1wgEFuNJJT1BqvvZBQS9GsUcBKzp+JtX6Ap61P1qt9AwUldfdMFM6lzhbi2AZ9LojW1CX+wx0oRMm6SldxuVdn1NUnN18xPPU28k3JU9SdQQWfO0Ze26OM6aubihevlMHwatCulxFvThRjsgV334mD7xEdxEaceN9+clrvdpuTU3SxgIEY7yYvFsawGlLwW25XBidZXtQoB1d2cvbwskRO7V3HRTdevHVEJ0YPrLLhlTb96y86YIjbMvivoG3kId+77XGcs8tNGDJZwZyovEqUCi4W1pt/ggjQFE1v/kwJyXv3ebFkH4hSb5TFIovZV4T/PB5IkPICTHpK67rLG0K8kvHjXHZIuv1x7rRysBVZ0ivyuhJeL16nIFHgjY+99l7QIgwSNSc1ubSoayKPcjIIwzDtboXVPE5Ikvnq4ZnU9r6yZya3w3dV44N3/jYb8YFOIo9RPcWtsPDVfKW9OA4KSL8FWDpn1vBS6qho/I+PQd5foxA8vPTDF54kP6nSS5gxIwSF4Xa8XYxJTd6Ic2M6Ws6Ik+ZX8VKTvlznNhu1XuvJxUVV+TMDGOopl52XEmKFm1YwaYfOQeEPTqnE44dJ+tb12P44bL30cGu35tP1s9N8OArY9fur0d2AMS/dU6BtQWO5bQfPWu7PvWk3+2enQvF5Pf8ftYe+H4EAffKOxckYkUdFhXwCEDbyvQ4LTh6uH0SUnM1kg/Guiy/aK+9DaUMvMljPE4WCLs+sVx9qxPmVJCQFHi24OKS7PF5IkP9OTPWXtktEes7foiKNv2BobtDf08+JbRZ5/l+0Eyd2C7IKoiFfzm2rYvgzZqKr1EUFOZLOmd1QUh9zz6cnbEXXo5mD7xvRJakkXFmvguEE5tkc3MvQh8wHkycKTKaCcuZLcmN2ArUJ2kExa02IVewyktsFkvTThAJWvVF7MzuRCXgukTH0GnSxvnCMBGCzTqbHRGp4qZnTXI6Tnydf3siAYaYhPC704/tiAo4GPTmhfdQ6GObD/opad1OAOqD7+Og6Tz8+/ECF8OJk98L8TnD1hAIH90bRAIbI0Xzk1GG8vOG03sAsymlXFbEYKTytmLhKTGWAC16tfUMpZkUU5qZxkbAGB8gaNdGN/LweSJD6hemVFB6S65qbKpemas0BFI1jscbFsVKee7My1V8q45CbS3o+YaFRdYb7WXWJIOxZdaQ2qg/d13Q5G6FEyf+N7Cm4m8EwHokzZiu5H3qVdF7qUv2sfox+5M6S2VcMKzZjkdSorF3Cf9+BT7yYVUSEoN6EG/dJyn20wb0ye+K9TkBbuMwUfPvBvKmQMTfeVW7XcbRNjt3UzlfgSi0WWDp9huVEYaSlYE7617dePsv7Xex6Cf5Jlp1FTMtwGZXYIOMAPia/21ioMahLBiRouDoD7Gvt/xx5PX+bJYmb6aPd13myCgs5/UHEWOPnIvNpjyOOOTaCfeqp89R8GdRiwi72CmabkziNzTcI3yZJKYVcmJ/7QVFid3m4RhaeBUqOtncPtth/TGi3LT1G/yHdT9YtGa+DE/TM04e23jUdXdJojJ7/jAQMZOu9fDuW6xi1bq03KTIWM6IWv7oclnFG4N1H5SF2Mfgn1GQySg7wfJCMtBP2oDoWwMphOs8um9ruiKOB/DTiytHz4mT/xBZBlymwDjfKXfqUvfD+1zB0Z4Hbemn4Lte4sQhsitn/mH7iPu1n+gDK9VjFE0LsOb7Gxp0WRwL8wVkye+ss1Vgc3sJEmiuSJNVRb2EGPr2p6NurJiqvvZjVl5oQsrEbJj8pCoQgVlvR/nUj/i8xg2d3uKWzQL70sPLt2NMb4UTJ/4cJMtGwMuAjBTd1/gTt4siKBuExKjob2n69eG0YPlfmDdBM423BZItVEut6L9CD5qtyzrA32Q1Niqj3IMhNQZIyeLORDfErQAnf4YwUYt7KF7x2uK4qXY3GTRYnq5IHF6CTTfT5BEt3tm6sok6O0jqd/F/mdbJTd6GYkgcCwQ691whX6Gknrwxeuw9XaEVB+GMELLHShtdlmYPPHF2vur1eoPVqvVz4A03rK29sZFIFidWLt6AGC5fsW+u7Kr89VqdUbyIHsvsWJXq4WVVQfgCMDx4CKtXcGuVoJCuU0RAVfLPbGrrX4/AsBa+x27Wi1WNl5Y2I8z3W6+snZ1LLAj37lAPiHWHtuVPQN5uCkX+f/3hLbWnom1AumPwHKX7IVdrc6stRZA9DBsYy2trO7LTH34wAyIf+XomTeefelP/+rZo3fviMhtggtAt2UBQfcfmsXr157+2H+kWZyGnYjEweHN15996dWvXbv5/BcBdoATE/WLm5C9/aMHRzdeeo1msTbn9q/cfOf2S5//2sX58XMgrmPoSh221D67bu/s6s0X/mib40pJ4srVp79768VXf+Hqjed+c/O6iBNeRAUhAljsH90/vPbcffo6tzrW+4dP/fDWi69+7+ipF94GsNd3gqFgED7bO7j2zcPrz/0P0gT7PWnODq//zH9/9iOf/9ry4uRVbawR2b4CG2BgLGi+eXj9ufs1WsUUMXk9Z3lxivNH73Ui9khE9gCYyI4rAM72Do4e7h9ct/1lwWp5bs4e3btp3e5rEGiaiPsnZf/g+r29/asXw0m1Wp7tnZ68+7SI9cEra3QXYAHBftA6fD8HR/c/6BhcJlYXpzg7vQ9rl1BB/PY6S9dB8mL/yo339vavrjncVssznJ7ce1rELpJfXuvHPDo4vHG82Dvs+xHBxcWJOT99cASRA/TSXa8g9GN/enB483hv/9Bu8+J6WZg88RsaGsaYQeReQ0PDJhrxGxpmiEb8hoYZohG/oWGGaMRvaJghGvEbGmaIRvyGhhmiEb+hYYZoxG9omCEa8RsaZohG/IaGGaIRv6FhhmjEb2iYIRrxGxpmiEb8hoYZohG/oWGGaMRvaJghGvEbGmaIRvyGhhmiEb+hYYZoxG9omCEa8RsaZohG/IaGGaIRv6FhhmjEb2iYIRrxGxpmiEb8hoYZohG/oWGGaMRvaJghGvEbGmaIRvyGhhmiEb+hYYZoxG9omCEa8RsaZohG/IaGGeL/Azf23Pxp0aJiAAAAAElFTkSuQmCC" alt="Heights Accommodation logo" />
-    <div class="name">Heights<br/>Accommodation</div>
-  </div>
-
-  <script>
-    // Copy-to-clipboard for Wi‑Fi buttons
-    document.querySelectorAll('.copy-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const value = btn.getAttribute('data-copy');
-        navigator.clipboard.writeText(value).then(() => {
-          const orig = btn.textContent;
-          btn.textContent = 'Copied!';
-          setTimeout(() => btn.textContent = orig, 1400);
-        });
-      });
-    });
-  </script>
 </body>
 </html>
